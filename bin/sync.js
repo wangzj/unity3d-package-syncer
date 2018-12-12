@@ -147,7 +147,6 @@ for (let projectPackageScope of getProjectPackageScopes()) {
 // Helper functions:
 
 function validateProjectPackageDirectory(packageDir) {
-  console.log("Project packages folder " + packageDir.includes(projectConfig.packagesFolder));
   if (projectConfig.packagesFolder && !packageDir.includes(projectConfig.packagesFolder)) {
     throw new Error("Project package has an unexpected path @1: " + packageDir);
   } else if (!projectConfig.packagesFolder && !packageDir.includes(PROJECT_RELATIVE_PACKAGES_PATH)) {
