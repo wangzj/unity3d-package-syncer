@@ -22,8 +22,12 @@ const PROJECT_RELATIVE_PACKAGES_PATH = path.join("Assets", "Plugins", "Packages"
 const projectRootDir = process.cwd();
 const projectConfigPath = path.join(projectRootDir, "package.json");
 const projectConfig = fs.readJsonSync(projectConfigPath);
-const projectPackagesDir = path.join(projectRootDir, PROJECT_RELATIVE_PACKAGES_PATH);
+var projectPackagesDir = path.join(projectRootDir, PROJECT_RELATIVE_PACKAGES_PATH);
 
+// Set projectPackagesDir according to package.json
+if (projectConfig.packagesFolder) {
+  projectPackagesDir = path.json(projectRootDir, projectConfig.packagesFolder);
+}
 
 const specialKeyword = "unity3d-package";
 const extraFiles = [ "package.json", "README.md", "LICENSE" ];
