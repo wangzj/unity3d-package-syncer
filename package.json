@@ -1,6 +1,6 @@
 {
-  "name": "unity3d-package-syncer",
-  "version": "1.0.8",
+  "name": "mk-unity3d-package-syncer",
+  "version": "1.0.4",
   "description": "A command line utility that synchronizes asset files from npm packages into an appropriate directory of a game project that is made using the Unity game engine.",
   "main": "index.js",
   "bin": {
@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rotorz/unity3d-package-syncer"
+    "url": "https://github.com/wangzj/unity3d-package-syncer"
   },
-  "author": "Rotorz Limited",
+  "author": "Wang Zhijiang",
   "license": "MIT",
   "keywords": [
     "unity3d"

@@ -4,6 +4,8 @@
 [![Dependency Status](https://david-dm.org/rotorz/unity3d-package-syncer.svg)](https://david-dm.org/rotorz/unity3d-package-syncer)
 [![devDependency Status](https://david-dm.org/rotorz/unity3d-package-syncer/dev-status.svg)](https://david-dm.org/rotorz/unity3d-package-syncer#info=devDependencies)
 
+**Modified based on [rotorz/unity3d-package-syncer](https://github.com/rotorz/unity3d-package-syncer).**
+
 A command line utility that synchronizes asset files from yarn / npm packages into an
 appropriate directory of a game project that is made using the Unity game engine.
 
@@ -16,19 +18,19 @@ Use the following command at the root of your project to synchronize the Unity p
 into your project's "Assets" directory:
 
 ```sh
-$ npx unity3d-package-syncer
+$ npx mk-unity3d-package-syncer
 ```
 
 For example, if you were to add a new package with yarn:
 ```bash
 yarn add unity3d-package-example
-npx unity3d-package-syncer
+npx mk-unity3d-package-syncer
 ```
 
 Or, with npm:
 ```bash
 npm install --save unity3d-package-example
-npx unity3d-package-syncer
+npx mk-unity3d-package-syncer
 ```
 
 If your package has an editor script that needs to generate data assets (such as presets,

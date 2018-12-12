@@ -26,7 +26,7 @@ var projectPackagesDir = path.join(projectRootDir, PROJECT_RELATIVE_PACKAGES_PAT
 
 // Set projectPackagesDir according to package.json
 if (projectConfig.packagesFolder) {
-  projectPackagesDir = path.json(projectRootDir, projectConfig.packagesFolder);
+  projectPackagesDir = path.join(projectRootDir, projectConfig.packagesFolder);
 }
 
 const specialKeyword = "unity3d-package";
@@ -147,7 +147,10 @@ for (let projectPackageScope of getProjectPackageScopes()) {
 // Helper functions:
 
 function validateProjectPackageDirectory(packageDir) {
-  if (!packageDir.includes(PROJECT_RELATIVE_PACKAGES_PATH)) {
+  console.log("Project packages folder " + packageDir.includes(projectConfig.packagesFolder));
+  if (projectConfig.packagesFolder && !packageDir.includes(projectConfig.packagesFolder)) {
+    throw new Error("Project package has an unexpected path @1: " + packageDir);
+  } else if (!projectConfig.packagesFolder && !packageDir.includes(PROJECT_RELATIVE_PACKAGES_PATH)) {
     throw new Error("Project package has an unexpected path: " + packageDir);
   }
 }
