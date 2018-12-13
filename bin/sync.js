@@ -78,6 +78,19 @@ for (let dependencyName of projectDependencyNames) {
     }
   }
 
+  // The filter that ignore predefined file paths.
+  const copySyncFilter = (src, dst) => {
+      if (dependencyConfig.ignoredSyncPaths) {
+        for (let ingoredRelativePath of dependencyConfig.ignoredSyncPaths) {
+          const ignoredPath = path.join(dependencyDir, "assets/" + ingoredRelativePath);
+          if (src.toLowerCase().startsWith(ignoredPath.toLowerCase())) {
+            return false;
+          }
+        }
+      }
+      return true;
+  };
+
 
   // Okay, we need to install the package into the Unity project.
   console.log("    Preparing package directory...");
@@ -87,7 +100,6 @@ for (let dependencyName of projectDependencyNames) {
   console.log("    Copying extra files...");
   extraFiles.forEach(copyIfExistsSync);
 
-
   function copyIfExistsSync(sourceRelativeFileName, targetRelativeFileName) {
     const sourcePath = path.join(dependencyDir, sourceRelativeFileName);
     if (fs.existsSync(sourcePath)) {
@@ -95,7 +107,7 @@ for (let dependencyName of projectDependencyNames) {
         targetRelativeFileName = sourceRelativeFileName;
       }
       const targetPath = path.join(assetsTargetPath, targetRelativeFileName);
-      fs.copySync(sourcePath, targetPath);
+      fs.copySync(sourcePath, targetPath, { filter: copySyncFilter });
     }
   }
 }
